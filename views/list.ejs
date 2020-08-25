@@ -1,0 +1,26 @@
+<%- include('partial/header'); -%>
+<div class="box" id="heading">
+	<h1><a href="/"><%= nameList %></a></h1>
+</div>
+<div class="box">
+	<%for (const key in newListItem) {%>
+	<div class="item">
+		<form action="/DeleteItem" method="post" class="item">
+			<input type="hidden" name="listName" value=<%= nameList %>>
+			<input type="checkbox" name="check" onchange=this.form.submit() value=<%= newListItem[key]._id %>/>
+			<p><%= newListItem[key].item %></p>
+		</form>
+	</div>
+	<%}%>
+
+	<form action="/" method="post" class="item">
+		<input name="newItem" type="text" placeholder="New Item" autocomplete="off" required/>
+		<button name="submit" type="submit" value=<%= nameList %>>+</button>
+	</form>
+</div>
+<div class="box click">
+	<form action="/Clear" method="post" class="form-margin">
+		<button class="button-click" name="submit" type="submit" value=<%= nameList %>>Clear List</button>
+	</form>
+</div>
+<%- include('partial/footer'); -%>
